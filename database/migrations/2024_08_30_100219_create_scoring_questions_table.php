@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('type');
             $table->text('question');
             $table->integer('points')->nullable();
+            $table->string('severity')->nullable();
+            $table->string('probability')->nullable();
+            $table->string('impact')->nullable();
+            $table->string('priority')->nullable();
             $table->string('operator')->nullable();
             $table->integer('reference')->nullable();
             $table->integer('sort');

@@ -56,4 +56,13 @@
         </a>
     </div>
 
+    <div class="mt-10">
+        <form action="{{ route('scorings.destroy', $scoring) }}" method="post" class="self-center"
+            onsubmit="return confirm('Êtes vous sûr de vouloir supprimer cette évaluation ? (Cette action est irreversible)');">
+            @method('delete')
+            @csrf
+            <button class="text-red-500 hover:text-red-700 opacity-75 text-sm" type="submit">Supprimer</button>
+        </form>
+    </div>
+
 </x-app-layout>

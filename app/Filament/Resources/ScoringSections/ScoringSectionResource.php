@@ -32,6 +32,7 @@ class ScoringSectionResource extends Resource
                 Section::make()->schema([
                     TextInput::make('title')->label('Titre de la section'),
                 ])->columnSpan(3),
+                // FileUpload::make('icon')->label("Icon")->image()->columnSpan(1),
                 // Section::make()->schema([
                 // FileUpload::make('icon')->label("Icon")->image()
                 // ])->columnSpan(1),

@@ -23,7 +23,7 @@ class ScoringController extends Controller
      */
     public function index()
     {
-        return redirect('/');
+        return redirect('/dashboard');
     }
 
     /**

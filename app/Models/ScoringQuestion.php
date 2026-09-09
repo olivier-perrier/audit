@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Enums\QuestionImpact;
+use App\Enums\QuestionPriority;
+use App\Enums\QuestionProbability;
+use App\Enums\QuestionSeverity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,7 +19,18 @@ class ScoringQuestion extends Model
         'question',
         'points',
         'type',
+        'severity',
+        'probability',
+        'impact',
+        'priority',
         'sort',
+    ];
+
+    protected $casts = [
+        'severity' => QuestionSeverity::class,
+        'probability' => QuestionProbability::class,
+        'impact' => QuestionImpact::class,
+        'priority' => QuestionPriority::class,
     ];
 
     public const QUESTION_INPUT = 'QUESTION_INPUT';
