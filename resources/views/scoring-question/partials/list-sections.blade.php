@@ -2,7 +2,7 @@
 
 <x-card class="h-fit">
 
-    <div class="py-8">
+    <div class="py-4">
 
         <div class="space-y-6">
 
@@ -20,7 +20,7 @@
                     </div>
                     <div class="justify-self-end">
                         <a href="{{ route('scorings.scoring-sections.show', [$scoring, $section]) }}" wire:navigate>
-                            <x-primary-button>Accéder</x-primary-button>
+                            <span class="text-primary font-semibold hover:underline">Accéder</span >
                         </a>
                     </div>
                 </div>

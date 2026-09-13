@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
 
 class Scoring extends Model
 {
@@ -34,42 +36,30 @@ class Scoring extends Model
 
     public function getScoreAttribute(): int
     {
+        $answers = $this->scoringAnswers()
+            ->positives()
+            ->with('scoringQuestion')
+            ->get();
+
+
         $points = 0;
-        foreach ($this->scoringQuiz->scoringSections as $section) {
-            $points += $section->getScoreAttribute($this);
+
+        foreach ($answers as $answer) {
+            $points += $answer->scoringQuestion->points;
         }
 
         return $points;
-
-        // todo can be improved ?
-        // $score = $this->scoring_answers()->where('answer', true)
-        //     ->with('scoring_question')->get()
-        //     ->reduce(fn ($carry, $answer) => $carry + $answer->scoring_question->points, 0);
-
-        // return $score;
     }
 
     public function scorePourcentage(): Attribute
     {
         return Attribute::make(
-            get: fn () => round($this->score * 100 / $this->scoringQuiz->maxPoints, 2),
+            get: fn() => round($this->score * 100 / $this->scoringQuiz->maxPoints),
         );
     }
 
-    public function getRankAttribute(): string
+    public function isCompleted(): bool
     {
-        $pourcentage = $this->scorePourcentage;
-
-        if ($pourcentage > 80) {
-            return 'A';
-        } elseif ($pourcentage > 60) {
-            return 'B';
-        } elseif ($pourcentage > 40) {
-            return 'C';
-        } elseif ($pourcentage > 20) {
-            return 'D';
-        } else {
-            return 'E';
-        }
+        return $this->scoringAnswers()->count() === $this->scoringQuiz->scoringQuestions()->count();
     }
 }

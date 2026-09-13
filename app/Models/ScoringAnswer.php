@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,50 +19,31 @@ class ScoringAnswer extends Model
         'answer',
     ];
 
+    protected $casts = [
+        // 'answer' => 'boolean',
+    ];
+
     public function scoringQuestion(): BelongsTo
     {
         return $this->belongsTo(ScoringQuestion::class);
     }
 
-    public function getPointAttribute(Scoring $scoring): int
+    public function points(): Attribute
     {
-        $points = 0;
+        return Attribute::make(
+            get: fn()  => $this->scoringQuestion->points
+        );
+    }
 
-        if ($this->scoringQuestion->type == ScoringQuestion::QUESTION_COMPLEXE) {
-            switch ($this->scoringQuestion->operator) {
-                case '>':
-                    if ($this->answer > $this->scoringQuestion->reference) {
-                        $points = $this->scoringQuestion->points;
-                    }
-                    break;
+    #[Scope]
+    protected  function negatives(Builder $query): void
+    {
+        $query->where('answer', false);
+    }
 
-                case '<':
-                    if ($this->answer < $this->scoringQuestion->reference) {
-                        $points = $this->scoringQuestion->points;
-                    }
-                    break;
-
-                case '==':
-                    if ($this->answer == $this->scoringQuestion->reference) {
-                        $points = $this->scoringQuestion->points;
-                    }
-                    break;
-
-                case '!=':
-                    if ($this->answer != $this->scoringQuestion->reference) {
-                        $points = $this->scoringQuestion->points;
-                    }
-                    break;
-
-                default:
-                    break;
-            }
-        } elseif ($this->scoringQuestion->type == ScoringQuestion::QUESTION_TOGGLE) {
-            if ($this->scoringQuestion->scoringAnswsers()->where('scoring_id', $scoring->id)->where('answer', true)->exists()) {
-                $points = $this->scoringQuestion->points;
-            }
-        }
-
-        return $points;
+    #[Scope]
+    protected  function positives(Builder $query): void
+    {
+        $query->where('answer', true);
     }
 }

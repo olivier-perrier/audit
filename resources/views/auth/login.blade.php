@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-auth-layout>
 
     <x-slot name="header">Connexion</x-slot>
 
@@ -50,4 +50,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-auth-layout>

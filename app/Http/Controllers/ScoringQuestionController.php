@@ -79,6 +79,7 @@ class ScoringQuestionController extends Controller
                 'scoring_question_id' => $scoringQuestion->id,
             ], [
                 'answer' => $validated['answer'],
+                'points' => $scoringQuestion->points,
             ]);
 
         $next_question = $scoringSection->scoringQuestions()->where('sort', $scoringQuestion->sort + 1)->first();

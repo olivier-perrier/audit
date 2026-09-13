@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Job;
-use App\Models\Scoring;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -28,8 +26,6 @@ class DatabaseSeeder extends Seeder
             ScoringQuizSeeder::class,
             ScoringSeeder::class,
         ], parameters: ['user' => $user]);
-
-        Job::factory(100)->create();
 
         // Scoring::factory()->create([
         //     "scoring_quiz_id" => $scoringQuiz->id,

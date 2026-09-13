@@ -14,7 +14,6 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @filamentStyles
 </head>
 
 <body class="font-sans antialiased">
@@ -37,7 +36,6 @@
         </main>
     </div>
 
-    @filamentScripts
     @fluxScripts
 </body>
 

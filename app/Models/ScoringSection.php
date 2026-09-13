@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -41,14 +42,32 @@ class ScoringSection extends Model
 
     public function getScoreAttribute(Scoring $scoring): int
     {
+        $answers = $scoring->scoringAnswers()
+            ->whereHas('scoringQuestion', function ($query) {
+                $query->where('scoring_section_id', $this->id);
+            })
+            ->positives()
+            ->with('scoringQuestion')
+            ->get();
+
         $points = 0;
 
-        foreach ($this->scoringQuestions as $question) {
-            $answer = $question->scoringAnswsers()->where('scoring_id', $scoring->id)->first();
-
-            $points += $answer?->getPointAttribute($scoring);
+        foreach($answers as $answer) {
+            $points += $answer->scoringQuestion->points;
         }
 
         return $points;
+    }
+
+    public function getScorePourcentage(Scoring $scoring): float
+    {
+        return round($this->getScoreAttribute($scoring) * 100 / $this->pointsCount, 2);
+    }
+
+    public function pointsCount(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->scoringQuestions()->sum('points'),
+        );
     }
 }

@@ -1,8 +1,8 @@
 @props(['disabled' => false])
 
 <button {{ $attributes->merge(['type' => 'button', 'class' => 'inline-flex items-center px-4 py-2 bg-white border
-    border-orange-500 rounded-full font-semibold text-xs text-orange-500 tracking-widest shadow-sm hover:bg-gray-50
-    focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out
+    border-orange-500 rounded-full font-semibold text-orange-500 tracking-widest shadow-sm hover:bg-gray-100
+    disabled:opacity-25 transition ease-in-out
     duration-150']) }} @disabled($disabled)>
     {{ $slot }}
 </button>

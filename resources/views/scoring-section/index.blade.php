@@ -3,10 +3,16 @@
     <?php $scoring_questions_count = count($scoring->scoringQuiz->scoringQuestions); ?>
     <?php $scoring_answers_count = count($scoring->scoringAnswers); ?>
 
-    <x-h1>Votre évaluation ACME Corporation</x-h1>
-    <p>Vous trouverez ci dessous les {{ count($scoring->scoringQuiz->scoringSections) }} thèmes du Recrutement.
-        Il vous reste actuellement {{ $scoring_questions_count - $scoring_answers_count }} questions auxquelles
+    <x-h1>Votre évaluation {{ Str::lower($scoring->scoringQuiz->name) }}</x-h1>
+    <p>Vous trouverez ci dessous les {{ count($scoring->scoringQuiz->scoringSections) }} thèmes de l'audit.
+        Il vous reste actuellement <b>{{ $scoring_questions_count - $scoring_answers_count }} questions</b> auxquelles
         répondre pour obtenir votre évaluation globale.</p>
+
+    @if ($scoring->isCompleted())
+        <div class="mt-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+            <p>Félicitations ! Vous avez terminé votre évaluation.</p>
+        </div>
+    @endif
 
     <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
@@ -48,13 +54,15 @@
 
     </div>
 
-    <div class="mt-6 flex justify-center">
-        <a href="{{ route('scorings.show', $scoring) }}" wire:navigate>
-            <x-primary-button>
-                Voir votre analyse du recrutement
-            </x-primary-button>
-        </a>
-    </div>
+    @if ($scoring->isCompleted() || true)
+        <div class="mt-6 flex justify-center">
+            <a href="{{ route('scorings.show', $scoring) }}" wire:navigate>
+                <x-primary-button>
+                    Voir votre analyse de l'audit
+                </x-primary-button>
+            </a>
+        </div>
+    @endif
 
     <div class="mt-10">
         <form action="{{ route('scorings.destroy', $scoring) }}" method="post" class="self-center"

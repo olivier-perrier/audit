@@ -62,8 +62,9 @@
 
             <div class="mt-6">
 
-                <p class="text-sm">Vous avez obtenu le score de <b>2.25</b> sur <b>15</b>, soit 10% sur le volet
-                    {{ $section->title }}</p>
+                <p class="text-sm">Vous avez le score de <b>{{ $section->getScoreAttribute($scoring) }}</b> 
+                    sur <b>{{ $section->pointsCount }}</b>, 
+                    soit <b>{{ $section->getScorePourcentage($scoring) }}</b >% sur le volet {{ $section->title }}</p>
 
             </div>
 

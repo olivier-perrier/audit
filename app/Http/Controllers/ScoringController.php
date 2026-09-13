@@ -23,7 +23,7 @@ class ScoringController extends Controller
      */
     public function index()
     {
-        return redirect('/dashboard');
+        //
     }
 
     /**
@@ -33,12 +33,10 @@ class ScoringController extends Controller
     {
         $scoring = $request->user()->scorings()->first();
 
-        // if (!$scoring) {
         $scoring = Scoring::create([
             'scoring_quiz_id' => ScoringQuiz::first()->id,
             'author_id' => $request->user()->id,
         ]);
-        // }
 
         return redirect()->route('scorings.scoring-sections.index', $scoring);
     }
@@ -56,10 +54,11 @@ class ScoringController extends Controller
      */
     public function show(Scoring $scoring)
     {
+        $scoring = $scoring->load('scoringQuiz', 'scoringQuiz.scoringSections', 'scoringQuiz.scoringSections.scoringQuestions');
+
         return view('scoring.show', [
-            'scoring' => $scoring->load('scoringQuiz', 'scoringQuiz.scoringSections'),
+            'scoring' => $scoring,
         ]);
-        // return redirect()->route('scorings.scoring-sections.index', $scoring);
     }
 
     /**
@@ -70,7 +69,6 @@ class ScoringController extends Controller
         return view('scoring.certification', [
             'scoring' => $scoring->load('scoringQuiz', 'scoringQuiz.scoringSections'),
         ]);
-        // return redirect()->route('scorings.scoring-sections.index', $scoring);
     }
 
     /**
@@ -81,7 +79,6 @@ class ScoringController extends Controller
         return view('scoring.iframe', [
             'scoring' => $scoring->load('scoringQuiz', 'scoringQuiz.scoringSections'),
         ]);
-        // return redirect()->route('scorings.scoring-sections.index', $scoring);
     }
 
     /**

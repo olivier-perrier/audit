@@ -37,8 +37,6 @@ class ScoringQuestion extends Model
 
     public const QUESTION_TOGGLE = 'QUESTION_TOGGLE';
 
-    public const QUESTION_COMPLEXE = 'QUESTION_COMPLEXE';
-
     public function scoringSection(): BelongsTo
     {
         return $this->belongsTo(ScoringSection::class);

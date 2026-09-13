@@ -4,7 +4,6 @@
 
     <div class="overflow-x-auto">
         <table>
-            <!-- head -->
             <thead>
                 <tr class="border-b border-gray-200 ">
                     <th class="mx-2">Question</th>
