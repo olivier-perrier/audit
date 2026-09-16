@@ -1,6 +1,6 @@
 # Présentation
 
-L'outil open source d'analyse du recrutement permet la création de fomulaire personnalisé pour l'évaluation des entreprises sur l'employabilité. L'application propose aussi une solution simple de recherche d'emploi.
+L'outil open source d'analyse d'audit permet la création de fomulaire personnalisé pour l'évaluation des entreprises sur l'employabilité. L'application propose aussi une solution simple de recherche d'emploi.
 
 # Informations
 
@@ -8,7 +8,7 @@ L'outil open source d'analyse du recrutement permet la création de fomulaire pe
 - Date d'origine du projet 2024.
 
 # Démo
-Application de démo : recrutement.olivierperrier.fr
+Application de démo : audit.olivierperrier.fr
 
 # Déploiement
 

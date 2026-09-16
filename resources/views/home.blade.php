@@ -1,11 +1,9 @@
 <x-guest-layout>
-
     <x-slot name="header">
         <span class="text-shadow-md">
             Auditez votre système informatique
         </span>
     </x-slot>
-    
     <x-container>
 
         <div class="mx-auto max-w-4xl">
@@ -18,7 +16,8 @@
             <div class="text-center mt-4 space-y-2">
 
                 <p>À l'image d'un audit de sécurité qui renseigne sur la qualité d'un produit, l'outil d'analyse
-                    <b>d'audit</b> évalue et qualifie l'ensemble de vos système et l'engagement d'une entreprise en faveur de
+                    <b>d'audit</b> évalue et qualifie l'ensemble de vos système et l'engagement d'une entreprise en
+                    faveur de
                     sa pérénité.
                 </p>
                 <p>
@@ -26,7 +25,8 @@
                     démarche professionnelle.
                 </p>
                 <p>
-                    L'outil d'analyse <b>d'audit</b> vous permet de valoriser votre engagement et de mettre en avant vos actions concrètes en matière de système d'information.
+                    L'outil d'analyse <b>d'audit</b> vous permet de valoriser votre engagement et de mettre en avant vos
+                    actions concrètes en matière de système d'information.
                 </p>
             </div>
         </div>
@@ -44,12 +44,11 @@
             </div>
 
             <a href="{{ route('dashboard') }}">
-                <x-primary-button class="mt-6">
+                <x-button class="mt-6">
                     Lancer mon audit
-                </x-primary-button>
+                </x-button>
             </a>
         </div>
 
     </x-container>
-    
 </x-guest-layout>

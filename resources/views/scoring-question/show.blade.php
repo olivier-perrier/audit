@@ -53,9 +53,9 @@
 
                     {{ $question->sort . ' / ' . count($section->scoringQuestions) }}
 
-                    <x-primary-button form="submit">
+                    <x-button form="submit">
                         Suivant
-                    </x-primary-button>
+                    </x-button>
                 </div>
 
             </div>

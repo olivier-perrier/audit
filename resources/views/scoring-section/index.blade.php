@@ -57,9 +57,9 @@
     @if ($scoring->isCompleted() || true)
         <div class="mt-6 flex justify-center">
             <a href="{{ route('scorings.show', $scoring) }}" wire:navigate>
-                <x-primary-button>
+                <x-button>
                     Voir votre analyse de l'audit
-                </x-primary-button>
+                </x-button>
             </a>
         </div>
     @endif

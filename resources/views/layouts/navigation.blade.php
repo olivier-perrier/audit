@@ -1,130 +1,100 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
-    <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="/" wire:navigate>
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
+<flux:header container class="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+
+    <flux:sidebar.toggle class="lg:hidden mr-2" icon="bars-2" inset="left" />
+
+    <x-app-logo href="{{ route('home') }}" wire:navigate />
+
+    <flux:navbar class="-mb-px max-lg:hidden">
+        <flux:navbar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
+            wire:navigate>
+            {{ __('Dashboard') }}
+        </flux:navbar.item>
+    </flux:navbar>
+
+    <flux:spacer />
+
+    {{-- <flux:navbar class="me-1.5 space-x-0.5 rtl:space-x-reverse py-0!">
+        <flux:tooltip :content="__('Search')" position="bottom">
+            <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="magnifying-glass" href="#"
+                :label="__('Search')" />
+        </flux:tooltip>
+        <flux:tooltip :content="__('Repository')" position="bottom">
+            <flux:navbar.item class="h-10 max-lg:hidden [&>div>svg]:size-5" icon="folder-git-2"
+                href="https://github.com/laravel/livewire-starter-kit" target="_blank" :label="__('Repository')" />
+        </flux:tooltip>
+        <flux:tooltip :content="__('Documentation')" position="bottom">
+            <flux:navbar.item class="h-10 max-lg:hidden [&>div>svg]:size-5" icon="book-open-text"
+                href="https://laravel.com/docs/starter-kits#livewire" target="_blank" :label="__('Documentation')" />
+        </flux:tooltip>
+    </flux:navbar> --}}
+
+    @auth
+        <flux:dropdown position="bottom" align="start">
+            <flux:sidebar.profile :name="auth()->user()->name" :initials="auth()->user()->initials()"
+                icon:trailing="chevrons-up-down" data-test="sidebar-menu-button" />
+
+            <flux:menu>
+                <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
+                    <flux:avatar :name="auth()->user()->name" :initials="auth()->user()->initials()" />
+                    <div class="grid flex-1 text-start text-sm leading-tight">
+                        <flux:heading class="truncate">{{ auth()->user()->name }}</flux:heading>
+                        <flux:text class="truncate">{{ auth()->user()->email }}</flux:text>
+                    </div>
                 </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        Certifications
-                    </x-nav-link>
-                </div>
-            </div>
-
-            <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
-                @auth
-                    <x-dropdown align="right" width="48">
-                        <x-slot name="trigger">
-                            <button
-                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                <div>{{ Auth::user()->name }}</div>
-
-                                <div class="ms-1">
-                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                            </button>
-                        </x-slot>
-
-                        <x-slot name="content">
-                            @can('access-panel')
-                                <x-dropdown-link :href="route('filament.admin.pages.dashboard')">
-                                    {{ __('Administration') }}
-                                </x-dropdown-link>
-                            @endcan
-                            <x-dropdown-link :href="route('profile.edit')" wire:navigate>
-                                {{ __('Mon compte') }}
-                            </x-dropdown-link>
-
-                            <!-- Authentication -->
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-
-                                <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                    {{ __('Déconnexion') }}
-                                </x-dropdown-link>
-                            </form>
-                        </x-slot>
-                    </x-dropdown>
-                @else
-                    <x-nav-link href="{{ route('login') }}">Se connecter</x-nav-link>
-                    <x-nav-link href="{{ route('register') }}" class="ml-4">S'enregistrer</x-nav-link>
-                @endauth
-            </div>
-
-            <!-- Hamburger -->
-            <div class="-me-2 flex items-center sm:hidden">
-                <button @click="open = ! open"
-                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
-                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{ 'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round"
-                            stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Responsive Navigation Menu -->
-    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('scorings.index')" :active="request()->routeIs('scorings.*')" wire:navigate>
-                Certifications
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
-                {{ __('Tableau de bord') }}
-            </x-responsive-nav-link>
-        </div>
-
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
-
-            @auth
-                <div class="px-4">
-                    <div class="font-medium text-base text-gray-800" x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name"
-                        x-on:profile-updated.window="name = $event.detail.name"></div>
-                    <div class="font-medium text-sm text-gray-500">{{ auth()->user()->email }}</div>
-                </div>
-
-                <div class="mt-3 space-y-1">
+                <flux:menu.separator />
+                <flux:menu.radio.group>
                     @can('access-panel')
-                        <x-responsive-nav-link :href="route('filament.admin.pages.dashboard')">
+                        <flux:menu.item :href="route('filament.admin.pages.dashboard')">
                             {{ __('Administration') }}
-                        </x-responsive-nav-link>
+                        </flux:menu.item>
                     @endcan
-                    <x-responsive-nav-link :href="route('profile.edit')" wire:navigate>
-                        {{ __('Mon compte') }}
-                    </x-responsive-nav-link>
+                    <flux:menu.item :href="route('profile.edit')" icon="cog" wire:navigate>
+                        {{ __('Settings') }}
+                    </flux:menu.item>
+                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                        @csrf
+                        <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle"
+                            class="w-full cursor-pointer" data-test="logout-button">
+                            {{ __('Log out') }}
+                        </flux:menu.item>
+                    </form>
+                    {{-- <flux:menu.item href="{{ route('login') }}">Se connecter</flux:menu.item> --}}
+                    {{-- <flux:menu.item href="{{ route('register') }}" class="ml-4">S'enregistrer</flux:menu.item> --}}
+                </flux:menu.radio.group>
+            </flux:menu>
+        </flux:dropdown>
+    @endauth
 
-                    <!-- Authentication -->
-                    <button wire:click="logout" class="w-full text-start">
-                        <x-responsive-nav-link>
-                            {{ __('Déconnexion') }}
-                        </x-responsive-nav-link>
-                    </button>
-                </div>
-            @else
-                <x-responsive-nav-link href="{{ route('login') }}">Se connecter</x-responsive-nav-link>
-                <x-responsive-nav-link href="{{ route('register') }}">S'enregistrer</x-responsive-nav-link>
-            @endauth
+    <!-- Mobile Menu -->
+    <flux:sidebar collapsible="mobile" sticky
+        class="lg:hidden border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+        <flux:sidebar.header>
+            <x-app-logo :sidebar="true" href="{{ route('home') }}" wire:navigate />
+            <flux:sidebar.collapse
+                class="in-data-flux-sidebar-on-desktop:not-in-data-flux-sidebar-collapsed-desktop:-mr-2" />
+        </flux:sidebar.header>
 
-        </div>
-    </div>
-</nav>
+        <flux:sidebar.nav>
+            <flux:sidebar.group :heading="__('Platform')">
+                <flux:sidebar.item icon="layout-grid" :href="route('dashboard')"
+                    :current="request()->routeIs('dashboard')" wire:navigate>
+                    {{ __('Dashboard') }}
+                </flux:sidebar.item>
+            </flux:sidebar.group>
+        </flux:sidebar.nav>
+
+        <flux:spacer />
+
+        <flux:sidebar.nav>
+            <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit"
+                target="_blank">
+                {{ __('Repository') }}
+            </flux:sidebar.item>
+            <flux:sidebar.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire"
+                target="_blank">
+                {{ __('Documentation') }}
+            </flux:sidebar.item>
+        </flux:sidebar.nav>
+    </flux:sidebar>
+
+</flux:header>

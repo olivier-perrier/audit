@@ -119,7 +119,7 @@ class ScoringQuizSeeder extends Seeder
                             'points' => 1,
                         ],
                         [
-                            'label' => "Concrètement, dans votre organisation, une procédure claire définit-elle les principes et règles garantissant la non-discrimination et la promotion de l'activité des seniors (recrutement, carrière, formation, santé, tutorat, reconversion, GEPP, accords sociaux, mobilité, prévention des risques, etc.) ?",
+                            'label' => "Concrètement, dans votre organisation, une procédure claire définit-elle les principes et règles garantissant la non-discrimination et la promotion de l'activité des seniors (audit, carrière, formation, santé, tutorat, reconversion, GEPP, accords sociaux, mobilité, prévention des risques, etc.) ?",
                             'points' => 1,
                         ],
                         [
@@ -143,7 +143,7 @@ class ScoringQuizSeeder extends Seeder
                             'points' => 1,
                         ],
                         [
-                            'label' => 'Concrètement, dans votre organisation, un référent GEPP dédié aux salariés seniors existe-t-il (formation, recrutement, fidélisation, rémunération, etc.) ?',
+                            'label' => 'Concrètement, dans votre organisation, un référent GEPP dédié aux salariés seniors existe-t-il (formation, audit, fidélisation, rémunération, etc.) ?',
                             'points' => 1,
                         ],
                         [
@@ -167,7 +167,7 @@ class ScoringQuizSeeder extends Seeder
                             'points' => 1,
                         ],
                         [
-                            'label' => "Concrètement, dans votre organisation, une politique structurée d'emplois aidés pour les seniors est-elle en place (CDI d'employabilité, aides au recrutement des plus de 45 ans en contrat de professionnalisation, etc.) ?",
+                            'label' => "Concrètement, dans votre organisation, une politique structurée d'emplois aidés pour les seniors est-elle en place (CDI d'employabilité, aides au audit des plus de 45 ans en contrat de professionnalisation, etc.) ?",
                             'points' => 1,
                         ],
                         [
@@ -286,9 +286,9 @@ class ScoringQuizSeeder extends Seeder
                 ],
                 [
                     'title' => 'Attraction des talents',
-                    'icon' => 'images/icon_section_recrutement.png',
+                    'icon' => 'images/icon_section_audit.png',
                     'questions' => [[
-                        'label' => "Concrètement, dans votre organisation, l'évolution de ces indicateurs est-elle suivie et utilisée pour ajuster la politique de recrutement ?",
+                        'label' => "Concrètement, dans votre organisation, l'évolution de ces indicateurs est-elle suivie et utilisée pour ajuster la politique d'audit ?",
                         'points' => 9,
                     ], [
                         'label' => "Concrètement, dans votre organisation, les offres d'emploi excluent-elles les formulations liées à l'âge et privilégient-elles des formats qui valorisent compétences et expériences plutôt que des CV strictement chronologiques ?",
@@ -368,7 +368,7 @@ class ScoringQuizSeeder extends Seeder
         ];
 
         $scoringQuiz = ScoringQuiz::factory()
-            ->create(['name' => 'Score de recrutement']);
+            ->create(['name' => 'Score d\'audit']);
 
         foreach ($SCORING['sections'] as $key => $SECTION) {
 

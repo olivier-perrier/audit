@@ -29,9 +29,9 @@
 
         <div class="mt-16 flex justify-center">
             <a href="{{ route('scorings.show', $scoring) }}" wire:navigate>
-                <x-primary-button>
+                <x-button>
                     Voir lévaluation globale
-                </x-primary-button>
+                </x-button>
             </a>
         </div>
 

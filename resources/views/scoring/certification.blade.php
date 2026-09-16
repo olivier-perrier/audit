@@ -9,13 +9,13 @@
         </div>
 
         <div class="flex w-2/3 text-5xl font-extrabold italic rounded-xl bg-slate-100 p-4 absolute bottom-0 left-0 m-8">
-            <x-h1>LA FÉDÉRATION POUR UN <span class="text-orange-600">MEILLEURE RECRUTEMENT</span></x-h1>
+            <x-h1>LA FÉDÉRATION POUR UN <span class="text-orange-600">MEILLEURE AUDIT</span></x-h1>
         </div>
     </div>
 
     {{-- Certification --}}
     <div class="pt-10" id="scoring">
-        <x-h1>LA CERTIFICATION <span class="text-orange-600">RECRUTEMENT</span>
+        <x-h1>LA CERTIFICATION <span class="text-orange-600">d'AUDIT</span>
         </x-h1>
 
         <div class="mx-auto max-w-4xl mt-6">
@@ -56,7 +56,7 @@
     {{-- scoring --}}
     <div class="mt-10"> 
 
-        <x-h2><span class="text-gray-800">ANALYSE DU</span> RECRUTEMENT</x-h2>
+        <x-h2><span class="text-gray-800">ANALYSE DU</span> AUDIT</x-h2>
         <span class="text-sm italic">Vous avez obtenu un pourcentage de total de {{ $scoring->score }} soit
             {{ $scoring->score_pourcentage }}%</span></span>
 

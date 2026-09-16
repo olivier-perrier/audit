@@ -1,5 +1,5 @@
 {
-    "name": "recrutement",
+    "name": "audit",
     "$schema": "https://www.schemastore.org/package.json",
     "private": true,
     "type": "module",

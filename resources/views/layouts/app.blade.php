@@ -16,24 +16,20 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
+<body class="min-h-screen bg-white dark:bg-zinc-800">
     <div class="min-h-screen bg-slate-200">
 
         @include('layouts.navigation')
 
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endif
-
-        <!-- Page Content -->
         <main class="py-8 max-w-7xl mx-auto px-4 md:px-8">
             {{ $slot }}
         </main>
+
+        @persist('toast')
+            <flux:toast.group>
+                <flux:toast />
+            </flux:toast.group>
+        @endpersist
     </div>
 
     @fluxScripts

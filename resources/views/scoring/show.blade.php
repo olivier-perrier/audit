@@ -148,9 +148,9 @@
         <div class="mt-6">
             <x-card>
                 <x-h2>Axes d'amélioration</x-h2>
-                {{-- <p class="mt-2 text-sm">Vous excellez particulièrement dans les domaines du recrutement et
+                {{-- <p class="mt-2 text-sm">Vous excellez particulièrement dans les domaines d'audit et
                         de la communication,
-                        avec des scores respectifs de 85 et 95 sur 100, indiquant des pratiques de recrutement
+                        avec des scores respectifs de 85 et 95 sur 100, indiquant des pratiques d'audit
                         inclusives et des stratégies de communication claires et valorisaantes sur les employés
                         seniors.</p> --}}
             </x-card>
