@@ -11,6 +11,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -33,7 +34,10 @@ class ScoringSectionsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('title')
             ->columns([
-                TextColumn::make('title'),
+                ImageColumn::make('icon')->label('Icon')->toggleable()->square(),
+                TextColumn::make('title')->label('Titre')->sortable()->searchable(),
+                TextColumn::make('description')->label('Description')->limit(50)->toggleable(),
+                TextColumn::make('scoring_questions_count')->label('Nombre de questions')->counts('scoringQuestions')->sortable(),
             ])
             ->filters([
                 //
@@ -51,6 +55,8 @@ class ScoringSectionsRelationManager extends RelationManager
                     ->url(fn ($record) => ScoringSectionResource::getUrl('edit', [$record])),
                 DeleteAction::make(),
             ])
+            ->reorderable('sort')
+            ->defaultSort('sort')
             ->toolbarActions([
                 BulkActionGroup::make([
                     // Tables\Actions\DeleteBulkAction::make(),

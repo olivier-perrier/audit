@@ -21,13 +21,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home', [
-        'sections' => ScoringSection::all(),
+        'sections' => ScoringSection::orderBy('sort')->get(),
     ]);
 })->name('home');
 
 Route::get('dashboard', function () {
     return view('dashboard', [
-        'scorings' => Auth::user()->scorings,
+        'scorings' => Auth::user()->scorings()->orderByDesc('created_at')->get(),
     ]);
 })->middleware(['auth', 'verified'])
     ->name('dashboard');

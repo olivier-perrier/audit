@@ -18,6 +18,7 @@ class ScoringSection extends Model
         'scoring_quiz_id',
         'sort',
         'icon',
+        'description',
     ];
 
     public function scoringQuestions(): HasMany

@@ -1,58 +1,51 @@
 @props(['section'])
 
-<div class="mt-10 border rounded p-4 bg-white">
+<x-card class="mt-10">
 
-    <div class="overflow-x-auto">
-        <table>
-            <thead>
-                <tr class="border-b border-gray-200 ">
-                    <th class="mx-2">Question</th>
-                    <th>
-                        <span class="mx-2">Réponse</span>
-                    </th>
-                    <th>
-                        <span class="mx-2">Score</span>
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($section->scoringQuestions()->orderBy('sort')->get() as $question)
-                    <tr class="border-b border-gray-200 ">
-                        <td class="text-sm py-2">
-                            <span>{{ $question->question }}</span>
-                        </td>
-                        <td>
-                            <span class="flex justify-center">
-                                <?php $answer = $question->getAnswer($scoring); ?>
-                                @if ($answer)
-                                    @if ($question->getAnswer($scoring)->answer == true)
-                                        Oui
-                                    @elseif($question->getAnswer($scoring)->answer == false)
-                                        Non
-                                    @else
-                                        Je ne sais pas
-                                    @endif
-                                @endif
+    <flux:table>
+        <flux:table.columns>
+            <flux:table.column>Question</flux:table.column>
+            <flux:table.column>Réponse</flux:table.column>
+            <flux:table.column>Score</flux:table.column>
+            <flux:table.column></flux:table.column>
+        </flux:table.columns>
 
-                            </span>
-                        </td>
-                        <td>
-                            <span class="flex justify-center">
-                                {{ $question->points }}
-                            </span>
-                        </td>
-                        <td>
-                            <a href="{{ route('scorings.scoring-sections.scoring-questions.show', [$scoring, $section, $question]) }}"
-                                class="text-sm text-blue-500 hover:underline">
-                                Modifier
-                            </a>
-                        </td>
-                    </tr>
-                @endforeach
+        @foreach ($section->scoringQuestions as $question)
+            <flux:table.row>
+                <flux:table.cell class="text-sm py-2">
+                    <span class="text-wrap">{{ $question->question }}</span>
+                </flux:table.cell>
+                <flux:table.cell>
+                    <span class="flex justify-center">
+                        <?php $answers = $question->scoringAnswers; ?>
+                        @if ($answers->count() > 0)
+                            <?php $answer = $answers->first(); ?>
+                            @if ($answer->answer == true)
+                                Oui
+                            @elseif($answer->answer == false)
+                                Non
+                            @else
+                                Je ne sais pas
+                            @endif
+                        @endif
 
-            </tbody>
-        </table>
-    </div>
+                    </span>
+                </flux:table.cell>
+                <flux:table.cell>
+                    <span class="flex justify-center">
+                        {{ $question->points }}
+                    </span>
+                </flux:table.cell>
+                <flux:table.cell>
+                    <flux:link
+                        href="{{ route('scorings.scoring-sections.scoring-questions.show', [$scoring, $section, $question]) }}"
+                        class="text-primary">
+                        Modifier
+                    </flux:link>
+                </flux:table.cell>
+            </flux:table.row>
+        @endforeach
 
-</div>
+    </flux:table>
+
+</x-card>

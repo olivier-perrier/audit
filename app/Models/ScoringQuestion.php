@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ScoringQuestion extends Model
 {
@@ -42,13 +43,13 @@ class ScoringQuestion extends Model
         return $this->belongsTo(ScoringSection::class);
     }
 
-    public function scoringAnswsers(): HasMany
+    public function scoringAnswers(): HasMany
     {
-        return $this->HasMany(ScoringAnswer::class);
+        return $this->hasMany(ScoringAnswer::class);
     }
 
     public function getAnswer(Scoring $scoring): ?ScoringAnswer
     {
-        return $this->scoringAnswsers()->where('scoring_id', $scoring->id)->first();
+        return $this->scoringAnswers()->where('scoring_id', $scoring->id)->first();
     }
 }

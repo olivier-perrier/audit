@@ -37,17 +37,34 @@ class ScoringQuestionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Scoring $scoring, ScoringSection $scoring_section, $scoring_question)
+    public function show(Scoring $scoring, ScoringSection $scoringSection, $scoring_question)
     {
         $scoringQuestion = ScoringQuestion::findOrFail($scoring_question);
 
         $answer = $scoring->scoringAnswers()->where('scoring_question_id', $scoringQuestion->id)->first();
 
-        $preview_question = $scoring_section->scoringQuestions()->where('sort', $scoringQuestion->sort - 1)->first();
+        $preview_question = $scoringSection->scoringQuestions()->where('sort', $scoringQuestion->sort - 1)->first();
+
+        $scoring = $scoring->load([
+            'scoringQuiz.scoringSections',
+            'scoringQuiz.scoringSections.scoringQuestions' => function ($query) use ($scoring) {
+                $query->with(['scoringAnswers' => function ($query) use ($scoring) {
+                    $query->where('scoring_id', $scoring->id);
+                }]);
+            }
+        ]);
+
+        $section = $scoringSection->load([
+            'scoringQuestions' => function ($query) use ($scoring) {
+                $query->with(['scoringAnswers' => function ($query) use ($scoring) {
+                    $query->where('scoring_id', $scoring->id);
+                }]);
+            }
+        ]);
 
         return view('scoring-question.show', [
             'scoring' => $scoring,
-            'section' => $scoringQuestion->scoringSection,
+            'section' => $section,
             'question' => $scoringQuestion,
             'answer' => $answer,
             'preview_question' => $preview_question,

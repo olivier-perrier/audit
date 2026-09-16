@@ -1,13 +1,21 @@
 <x-app-layout>
-    <div>
-        <div class="flex flex-wrap gap-6">
+
+    {{-- <flux:breadcrumbs>
+        <flux:breadcrumbs.item>Tableau de bord</flux:breadcrumbs.item>
+    </flux:breadcrumbs> --}}
+
+    <div class="">
+        <flux:heading>Retrouvez ici tout vos audits</flux:heading>
+        <flux:text class="mt-2">Selectionnez un de vos audit pour continuer à répondre aux questions ou visualiser le rapport d'analyse.</flux:text>
+
+        <div class="mt-6 flex flex-wrap gap-6">
 
             @foreach ($scorings as $scoring)
                 <a href="{{ route('scorings.scoring-sections.index', $scoring) }}" wire:navigate>
 
                     <x-card class="h-52 w-52 relative"
                         style="background-image: url('images/bubble.svg'); object-fit: cover">
-                        <span class="flex justify-center mt-2 text-3xl font-extrabold text-center mt-6">
+                        <span class="flex justify-center mt-2 text-3xl font-extrabold text-center">
                             {{ $scoring->scoringQuiz->name }}
                         </span>
                         <span class="flex justify-center text-center mt-2 text-xs">
@@ -19,11 +27,9 @@
 
         </div>
 
-        <div class="flex justify-center mt-12">
+        <div class="flex justify-center mt-6">
             <a href="{{ route('scorings.create') }}">
-                <x-button>
-                    Nouvel audit
-                </x-button>
+                <x-button>Nouvel audit</x-button>
             </a>
         </div>
 

@@ -1,24 +1,26 @@
 <x-app-layout>
 
     <div>
-        <a href="{{ route('scorings.scoring-sections.index', $scoring) }}" class="text-blue-500 hover:underline"
-            wire:navigate>
-            <span>
-                < Retour aux cathégories</span>
-        </a>
+        <flux:breadcrumbs>
+            <flux:breadcrumbs.item :href="route('dashboard')">Tableau de bord</flux:breadcrumbs.item>
+            <flux:breadcrumbs.item :href="route('scorings.scoring-sections.index', $scoring)">Sections
+            </flux:breadcrumbs.item>
+            <flux:breadcrumbs.item>{{ $section->title }}</flux:breadcrumbs.item>
+        </flux:breadcrumbs>
 
-        <div class="mt-4 flex space-x-2">
-            <img src="{{ $section->icon ? asset($section->icon) : asset('images/icon_category_gouvergance.png') }}" alt="icon" class="h-10">
+        <div class="mt-8 flex space-x-4">
+            <img src="{{ Storage::disk('public')->exists($section->icon) ? Storage::disk('public')->url($section->icon) : asset('images/icon_section_gouvernance.png') }}"
+                alt="icon" class="h-10">
             <x-h1 class="content-center">{{ $section->title }}</x-h1>
         </div>
     </div>
 
-    <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-y-6 md:gap-10">
+    <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-y-6 lg:gap-10">
 
         <div class="col-span-2">
 
             {{-- Main card --}}
-            <div class="p-6 bg-white rounded">
+            <x-card>
                 <span class="font-bold">{{ $question->points }} points</span>
                 <p class="mt-2">{{ $question->question }}</p>
 
@@ -46,25 +48,26 @@
                 <div class="mt-6 flex justify-between self-end">
                     <a
                         href="{{ $preview_question ? route('scorings.scoring-sections.scoring-questions.show', [$scoring, $section, $preview_question]) : '' }}">
-                        <x-secondary-button disabled="{{ !$preview_question }}">
+                        <x-button :disabled="!$preview_question" variant="outline">
                             Précédent
-                        </x-secondary-button>
+                        </x-button>
                     </a>
 
                     {{ $question->sort . ' / ' . count($section->scoringQuestions) }}
 
-                    <x-button form="submit">
+                    <x-button form="submit" variant="primary" type="submit">
                         Suivant
                     </x-button>
                 </div>
 
-            </div>
+            </x-card>
 
             <div class="mt-6">
 
-                <p class="text-sm">Vous avez le score de <b>{{ $section->getScoreAttribute($scoring) }}</b> 
-                    sur <b>{{ $section->pointsCount }}</b>, 
-                    soit <b>{{ $section->getScorePourcentage($scoring) }}</b >% sur le volet {{ $section->title }}</p>
+                <p class="text-sm">Vous avez le score de <b>{{ $section->getScoreAttribute($scoring) }}</b>
+                    sur <b>{{ $section->pointsCount }}</b>,
+                    soit <b>{{ $section->getScorePourcentage($scoring) }}</b>% sur le volet {{ $section->title }}
+                </p>
 
             </div>
 
@@ -77,6 +80,5 @@
         </div>
 
     </div>
-
 
 </x-app-layout>

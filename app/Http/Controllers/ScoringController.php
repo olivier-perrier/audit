@@ -31,14 +31,9 @@ class ScoringController extends Controller
      */
     public function create(Request $request)
     {
-        $scoring = $request->user()->scorings()->first();
-
-        $scoring = Scoring::create([
-            'scoring_quiz_id' => ScoringQuiz::first()->id,
-            'author_id' => $request->user()->id,
+        return view('scoring.create', [
+            'quizzes' => ScoringQuiz::all(),
         ]);
-
-        return redirect()->route('scorings.scoring-sections.index', $scoring);
     }
 
     /**
@@ -46,7 +41,16 @@ class ScoringController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'scoring_quiz_id' => 'required|exists:scoring_quizzes,id',
+        ]);
+
+        $scoring = Scoring::create([
+            'scoring_quiz_id' => $request->input('scoring_quiz_id'),
+            'author_id' => $request->user()->id,
+        ]);
+
+        return redirect()->route('scorings.scoring-sections.index', $scoring);
     }
 
     /**

@@ -12,6 +12,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
@@ -32,11 +33,11 @@ class ScoringSectionResource extends Resource
             ->components([
                 Section::make()->schema([
                     TextInput::make('title')->label('Titre de la section'),
-                ])->columnSpan(3),
-                // FileUpload::make('icon')->label("Icon")->image()->columnSpan(1),
-                // Section::make()->schema([
-                // FileUpload::make('icon')->label("Icon")->image()
-                // ])->columnSpan(1),
+                    Textarea::make('description')->label('Description de la section'),
+                ])->columnSpan(2),
+                Section::make()->schema([
+                    FileUpload::make('icon')->label("Icon")->disk('public')->image()->directory('sections')
+                ])->columnSpan(1),
             ])->columns(3);
     }
 
