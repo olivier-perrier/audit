@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->integer('sort');
             $table->string('icon')->nullable();
+            $table->string('default_icon')->nullable();
             $table->text('description')->nullable();
 
             $table->foreignIdFor(ScoringQuiz::class)->constrained()->cascadeOnDelete();

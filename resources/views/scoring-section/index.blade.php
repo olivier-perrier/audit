@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.app>
 
     <?php $scoring_questions_count = count($scoring->scoringQuiz->scoringQuestions); ?>
     <?php $scoring_answers_count = count($scoring->scoringAnswers); ?>
@@ -82,4 +82,4 @@
 
     </div>
 
-</x-app-layout>
+</x-layouts.app>

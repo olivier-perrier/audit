@@ -1,4 +1,4 @@
-<x-auth-layout>
+<x-layouts.auth>
     <form method="POST" action="{{ route('register') }}" class="space-y-4">
         @csrf
 
@@ -30,4 +30,4 @@
             </x-button>
         </div>
     </form>
-</x-auth-layout>
+</x-layouts.auth>

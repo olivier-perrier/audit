@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.app>
 
     <section class="w-full">
         @include('partials.settings-heading')
@@ -67,4 +67,4 @@
 
     </section>
 
-</x-app-layout>
+</x-layouts.app>

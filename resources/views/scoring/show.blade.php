@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.app>
 
     <flux:breadcrumbs>
         <flux:breadcrumbs.item :href="route('dashboard')">Tableau de bord</flux:breadcrumbs.item>
@@ -170,4 +170,4 @@
         </a>
     </div>
 
-</x-app-layout>
+</x-layouts.app>

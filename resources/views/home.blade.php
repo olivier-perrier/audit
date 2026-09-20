@@ -1,10 +1,16 @@
-<x-guest-layout>
-    <x-slot name="header">
-        <span class="text-shadow-md">
-            Auditez votre système informatique
-        </span>
-    </x-slot>
-    <x-container>
+<x-layouts.guest>
+
+    <header class="bg-white shadow relative">
+        <img src="{{ asset('images/header-2.jpg') }}" alt="image_header" class="w-full h-72 object-cover">
+        <div
+            class="px-4 text-2xl md:text-4xl uppercase font-extrabold text-center drop-shadow-lg text-white absolute inset-0 flex items-center justify-center">
+            <span class="text-shadow-md">
+                Auditez votre système informatique
+            </span>
+        </div>
+    </header>
+
+    <div class="mt-10">
 
         <div class="mx-auto max-w-4xl">
             <p class="text-center">L'outil <b>d'audit</b> permet aux entreprises d'évaluer
@@ -38,7 +44,7 @@
             <div class="mt-6 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
 
                 @foreach ($sections as $section)
-                    <x-card.theme :title="$section->title" :icon="$section->icon" />
+                    <x-card.theme :title="$section->title" :icon="$section->icon" :icon="$section->default_icon" />
                 @endforeach
 
             </div>
@@ -50,5 +56,5 @@
             </a>
         </div>
 
-    </x-container>
-</x-guest-layout>
+    </div>
+</x-layouts.guest>

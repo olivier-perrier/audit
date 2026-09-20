@@ -1,5 +1,3 @@
-@props(['value'])
-
 <flux:label {{ $attributes }}>
-    {{ $value ?? $slot }}
+    {{ $slot }}
 </flux:label>

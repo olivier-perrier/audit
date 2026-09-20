@@ -1,3 +1,7 @@
+# TODO
+
+Migration Fortify
+
 # Présentation
 
 L'outil open source d'analyse d'audit permet la création de fomulaire personnalisé pour l'évaluation des entreprises sur l'employabilité. L'application propose aussi une solution simple de recherche d'emploi.
@@ -14,7 +18,7 @@ Application de démo : audit.olivierperrier.fr
 
 ## Prérequis
 - php 8.1
-- node 20 
+- node 20
 
 ## Installation
 cp .env.example .env

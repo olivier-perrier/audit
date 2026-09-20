@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.app>
 
     <div>
         <flux:breadcrumbs>
@@ -81,4 +81,4 @@
 
     </div>
 
-</x-app-layout>
+</x-layouts.app>

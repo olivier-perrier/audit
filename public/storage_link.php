@@ -1,18 +1,11 @@
 <?php
 
-$target = __DIR__ . '/../storage/app/public';
-$link = __DIR__ . '/storage';
+require __DIR__ . '/../vendor/autoload.php';
 
-if (is_link($link)) {
-    unlink($link);
-}
+$app = require_once __DIR__ . '/../bootstrap/app.php';
 
-if (file_exists($link)) {
-    throw new RuntimeException("Le chemin existe déjà : {$link}");
-}
+$kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
 
-if (symlink($target, $link)) {
-    echo "Lien symbolique créé : {$link} -> {$target}";
-} else {
-    echo "Impossible de créer le lien symbolique.";
-}
+$kernel->call('storage:link');
+
+echo nl2br(e($kernel->output()));

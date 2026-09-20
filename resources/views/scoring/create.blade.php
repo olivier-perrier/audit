@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.app>
 
     <a href="{{ route('dashboard') }}" class="text-blue-500 hover:underline">
         < Retour au tableau de bord </span>
@@ -29,4 +29,4 @@
 
     </form>
 
-</x-app-layout>
+</x-layouts.app>

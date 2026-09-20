@@ -1,4 +1,4 @@
-<x-auth-layout>
+<x-layouts.auth>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -52,4 +52,4 @@
         <span>{{ __('Don\'t have an account?') }}</span>
         <flux:link :href="route('register')" wire:navigate>{{ __('Sign up') }}</flux:link>
     </div>
-</x-auth-layout>
+</x-layouts.auth>

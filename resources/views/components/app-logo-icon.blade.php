@@ -1,3 +1,3 @@
-<span class="text-4xl font-bold text-primary">
+<span class="text-xl font-bold text-primary">
     AD
 </span>

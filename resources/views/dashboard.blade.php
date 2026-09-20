@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.app>
 
     {{-- <flux:breadcrumbs>
         <flux:breadcrumbs.item>Tableau de bord</flux:breadcrumbs.item>
@@ -34,4 +34,4 @@
         </div>
 
     </div>
-</x-app-layout>
+</x-layouts.app>

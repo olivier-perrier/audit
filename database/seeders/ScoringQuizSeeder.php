@@ -19,7 +19,7 @@ class ScoringQuizSeeder extends Seeder
             'sections' => [
                 [
                     'title' => 'Pilotage stratégique',
-                    'icon' => 'images/icon_section_gouvernance.png',
+                    'default_icon' => 'images/icon_section_gouvernance.png',
                     'questions' => [
                         [
                             'label' => "Concrètement, dans votre organisation, la stratégie portée par la direction intègre-t-elle un engagement explicite pour préserver l'employabilité et le maintien en poste des salariés seniors ?",
@@ -65,7 +65,7 @@ class ScoringQuizSeeder extends Seeder
                 ],
                 [
                     'title' => 'Conformité légale',
-                    'icon' => 'images/icon_section_reglementation.png',
+                    'default_icon' => 'images/icon_section_reglementation.png',
                     'questions' => [[
                         'label' => "Concrètement, dans votre organisation, le Document Unique d'Evaluation des Risques est-il actualisé régulièrement (au moins une fois par an) sur les enjeux d'ES, notamment de santé physique et psychologique ?",
                         'points' => 2,
@@ -82,7 +82,7 @@ class ScoringQuizSeeder extends Seeder
                 ],
                 [
                     'title' => 'Information et sensibilisation',
-                    'icon' => 'images/icon_section_communication.png',
+                    'default_icon' => 'images/icon_section_communication.png',
                     'questions' => [
                         [
                             'label' => "Concrètement, dans votre organisation, les rapports publics (DEU, rapport annuel, bilan social/ESG/ODD, etc.) rendent-ils compte de manière régulière et précise des engagements pris en faveur de l'ES ?",
@@ -112,7 +112,7 @@ class ScoringQuizSeeder extends Seeder
                 ],
                 [
                     'title' => 'Gestion des parcours professionnels',
-                    'icon' => 'images/icon_section_politique.png',
+                    'default_icon' => 'images/icon_section_politique.png',
                     'questions' => [
                         [
                             'label' => 'Concrètement, dans votre organisation, les engagements ES sont-ils contractualisés avec les représentants du personnel élus au CSE ?',
@@ -286,7 +286,7 @@ class ScoringQuizSeeder extends Seeder
                 ],
                 [
                     'title' => 'Attraction des talents',
-                    'icon' => 'images/icon_section_audit.png',
+                    'default_icon' => 'images/icon_section_audit.png',
                     'questions' => [[
                         'label' => "Concrètement, dans votre organisation, l'évolution de ces indicateurs est-elle suivie et utilisée pour ajuster la politique d'audit ?",
                         'points' => 9,
@@ -300,7 +300,7 @@ class ScoringQuizSeeder extends Seeder
                 ],
                 [
                     'title' => 'Développement des compétences',
-                    'icon' => 'images/icon_section_formation.png',
+                    'default_icon' => 'images/icon_section_formation.png',
                     'questions' => [[
                         'label' => "Concrètement, dans votre organisation, la politique de formation professionnelle répond-elle aux besoins spécifiques de maintien dans l'emploi des seniors (formations, accompagnements, coachings pour acquérir, maintenir ou renforcer les compétences face aux évolutions d'organisation, de méthodes et de technologies) ?",
                         'points' => 5,
@@ -320,7 +320,7 @@ class ScoringQuizSeeder extends Seeder
                 ],
                 [
                     'title' => 'Qualité de vie au travail',
-                    'icon' => 'images/icon_section_bienetre.png',
+                    'default_icon' => 'images/icon_section_bienetre.png',
                     'questions' => [[
                         'label' => "Concrètement, dans votre organisation, la médecine du travail met-elle en place un suivi spécifique des seniors, notamment via l'observatoire EVREST, pour analyser le ressenti sur la santé et les conditions de travail ?",
                         'points' => 1,
@@ -346,7 +346,7 @@ class ScoringQuizSeeder extends Seeder
                 ],
                 [
                     'title' => 'Coopération intergénérationnelle',
-                    'icon' => 'images/icon_section_intergenerationnel.png',
+                    'default_icon' => 'images/icon_section_intergenerationnel.png',
                     'questions' => [[
                         'label' => 'Concrètement, dans votre organisation, une politique RH intergénérationnelle est-elle réellement déployée ?',
                         'points' => 3,
@@ -375,8 +375,8 @@ class ScoringQuizSeeder extends Seeder
             $section = [];
             $section['title'] = $SECTION['title'];
             $section['sort'] = $key + 1;
-            if (isset($SECTION['icon'])) {
-                $section['icon'] = $SECTION['icon'];
+            if (isset($SECTION['default_icon'])) {
+                $section['default_icon'] = $SECTION['default_icon'];
             }
 
             $scoringSection = ScoringSection::factory()
