@@ -9,7 +9,7 @@
         </flux:breadcrumbs>
 
         <div class="mt-8 flex space-x-4">
-            <img src="{{ Storage::disk('public')->exists($section->icon) ? Storage::disk('public')->url($section->icon) : asset('images/icon_section_gouvernance.png') }}"
+            <img src="{{ $section->icon ? Storage::disk('public')->url($section->icon) : asset('images/icon_section_gouvernance.png') }}"
                 alt="icon" class="h-10">
             <x-h1 class="content-center">{{ $section->title }}</x-h1>
         </div>
