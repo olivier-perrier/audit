@@ -25,12 +25,12 @@ class ScoringQuestion extends Model
         'impact',
         'priority',
         'sort',
+        'id',
     ];
 
     protected $casts = [
         'severity' => QuestionSeverity::class,
         'probability' => QuestionProbability::class,
-        'impact' => QuestionImpact::class,
         'priority' => QuestionPriority::class,
     ];
 

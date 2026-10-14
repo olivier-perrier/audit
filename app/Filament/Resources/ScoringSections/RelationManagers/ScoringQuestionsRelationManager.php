@@ -6,11 +6,15 @@ use App\Enums\QuestionImpact;
 use App\Enums\QuestionPriority;
 use App\Enums\QuestionProbability;
 use App\Enums\QuestionSeverity;
+use App\Filament\Exports\QuestionExporter;
+use App\Filament\Imports\QuestionImporter;
 use App\Models\ScoringQuestion;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ExportAction;
+use Filament\Actions\ImportAction;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -67,10 +71,10 @@ class ScoringQuestionsRelationManager extends RelationManager
             ->recordTitleAttribute('question')
             ->columns([
                 TextColumn::make('question')->limit(50)->sortable()->searchable(),
-                TextColumn::make('severity')->label('Gravité')->sortable()->searchable()->toggleable(),
-                TextColumn::make('probability')->label('Probabilité')->sortable()->toggleable(),
-                TextColumn::make('impact')->label('Impact')->sortable()->toggleable(),
-                TextColumn::make('priority')->label('Priorité')->sortable()->toggleable(),
+                TextColumn::make('severity')->label('Gravité')->badge()->sortable()->searchable()->toggleable(),
+                TextColumn::make('probability')->label('Probabilité')->sortable()->toggleable()->toggledHiddenByDefault(),
+                TextColumn::make('impact')->label('Impact')->limit(30)->sortable()->toggleable(),
+                TextColumn::make('priority')->label('Priorité')->badge()->sortable()->toggleable(),
                 TextColumn::make('points')->sortable()->toggleable()->toggledHiddenByDefault(),
             ])
             ->filters([
@@ -87,6 +91,14 @@ class ScoringQuestionsRelationManager extends RelationManager
 
                         return $data;
                     }),
+                ExportAction::make()->exporter(QuestionExporter::class)
+                    ->modalHeading('Exporter les questions')
+                    ->columnMappingColumns(3)
+                    ->label('Exporter'),
+                ImportAction::make()
+                    ->importer(QuestionImporter::class)
+                    ->label('Importer'),
+
             ])
             ->reorderableColumns()
             ->recordActions([

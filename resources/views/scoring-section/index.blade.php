@@ -28,9 +28,9 @@
 
                     <x-card class="bg-white px-4 py-4 hover:bg-indigo-200 h-48">
                         <div class="flex">
-                            <img src="{{ $section->icon ? Storage::disk('public')->url($section->icon) : asset('images/icon_section_gouvernance.png') }}"
+                            <img src="{{ $section->icon ? Storage::disk('public')->url($section->icon) : asset($section->default_icon) }}"
                                 alt="icon" class="p-2 h-16">
-                            <span class="ml-4 font-bold text-lg content-center">{{ $section->title }}</span>
+                            <span class="ml-2 font-bold text-lg content-center">{{ $section->title }}</span>
                         </div>
                         <span>{{ count($section->scoringQuestions) }} question(s)</span>
 

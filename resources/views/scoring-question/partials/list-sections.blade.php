@@ -7,7 +7,7 @@
         @foreach ($scoring->scoringQuiz->scoringSections as $section)
             <div class="grid grid-cols-3 items-center justify-items-stretch">
                 <div class="col-span-2 flex items-center space-x-4">
-                    <img src="{{ $section->icon ? Storage::disk('public')->url($section->icon) : asset('images/icon_section_gouvernance.png') }}"
+                    <img src="{{ $section->icon ? Storage::disk('public')->url($section->icon) : asset($section->default_icon) }}"
                         alt="icon" class="h-10 w-10">
                     <span class="font-semibold">{{ $section->title }}</span>
                     <span class="text-sm whitespace-nowrap">
@@ -17,7 +17,7 @@
                     </span>
                 </div>
                 <div class="justify-self-end">
-                    <flux:link href="{{ route('scorings.scoring-sections.show', [$scoring, $section]) }}"
+                    <flux:link href="{{ route('scorings.scoring-sections.show', [$scoring, $section]) }}" wire:navigate
                         class="text-primary">
                         Accéder
                     </flux:link>

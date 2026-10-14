@@ -44,7 +44,7 @@
             <div class="mt-6 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
 
                 @foreach ($sections as $section)
-                    <x-card.theme :title="$section->title" :icon="$section->icon" :icon="$section->default_icon" />
+                    <x-card.theme :title="$section->title" :icon="$section->icon" :default_icon="$section->default_icon" />
                 @endforeach
 
             </div>

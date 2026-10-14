@@ -18,6 +18,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Storage;
 
 class ScoringSectionResource extends Resource
 {
@@ -36,7 +37,9 @@ class ScoringSectionResource extends Resource
                     Textarea::make('description')->label('Description de la section'),
                 ])->columnSpan(2),
                 Section::make()->schema([
-                    FileUpload::make('icon')->label("Icon")->disk('public')->image()->directory('sections')
+                    FileUpload::make('icon')->label("Icon")->disk('public')->image()
+                        ->directory('sections')
+                        ->deleteUploadedFileUsing(fn (string $file): bool => Storage::disk('public')->delete($file))
                 ])->columnSpan(1),
             ])->columns(3);
     }

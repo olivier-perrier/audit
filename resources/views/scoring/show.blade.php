@@ -86,7 +86,7 @@
                             <th class="w-1/2">Problème</th>
                             <th>Gravité</th>
                             <th>Probabilité</th>
-                            <th>Impact</th>
+                            <th class="w-1/4">Impact</th>
                             <th>Priorité</th>
                         </tr>
                     </thead>
@@ -122,7 +122,7 @@
                                 <td>
                                     @if ($answer->scoringQuestion->impact)
                                         <p>
-                                            {{ $answer->scoringQuestion->impact->getLabel() }}
+                                            {{ $answer->scoringQuestion->impact }}
                                         </p>
                                     @endif
                                 </td>

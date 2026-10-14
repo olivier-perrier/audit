@@ -19,6 +19,8 @@ class ScoringSectionsRelationManager extends RelationManager
 {
     protected static string $relationship = 'scoringSections';
 
+    protected static ?string $title = "Sections";
+
     public function form(Schema $schema): Schema
     {
         return $schema

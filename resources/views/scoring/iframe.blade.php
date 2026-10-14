@@ -12,7 +12,7 @@
             Analyse de l'audit de l'entreprise
             {{ @$scoring->company->name }}
         </h2>
-        <img src="{{ asset('images/logo-full.png') }}" alt="" class="h-16 ml-6 ">
+        <img src="{{ asset('images/logo.png') }}" alt="" class="h-16 ml-6 ">
     </div>
 
     <div class="mt-4 px-4">

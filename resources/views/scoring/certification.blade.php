@@ -25,7 +25,7 @@
 
                 <div>
                     <div class="flex justify-between">
-                        <img src="{{ asset('images/logo-full.png') }}" alt="" class="h-16">
+                        <img src="{{ asset('images/logo.png') }}" alt="" class="h-16">
                         <img src="{{ asset('images/certified.jpg') }}" alt="" class="h-20">
                     </div>
 

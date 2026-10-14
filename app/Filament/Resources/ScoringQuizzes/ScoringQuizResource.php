@@ -5,6 +5,7 @@ namespace App\Filament\Resources\ScoringQuizzes;
 use App\Filament\Resources\ScoringQuizzes\Pages\CreateScoringQuiz;
 use App\Filament\Resources\ScoringQuizzes\Pages\EditScoringQuiz;
 use App\Filament\Resources\ScoringQuizzes\Pages\ListScoringQuizzes;
+use App\Filament\Resources\ScoringQuizzes\RelationManagers\ScoringQuestionsRelationManager;
 use App\Filament\Resources\ScoringQuizzes\RelationManagers\ScoringSectionsRelationManager;
 use App\Models\ScoringQuiz;
 use Filament\Actions\BulkActionGroup;
@@ -74,6 +75,7 @@ class ScoringQuizResource extends Resource
     {
         return [
             ScoringSectionsRelationManager::class,
+            ScoringQuestionsRelationManager::class,
         ];
     }
 

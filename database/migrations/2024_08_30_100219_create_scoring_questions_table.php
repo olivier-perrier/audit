@@ -22,8 +22,7 @@ return new class extends Migration
             $table->string('probability')->nullable();
             $table->string('impact')->nullable();
             $table->string('priority')->nullable();
-            $table->string('operator')->nullable();
-            $table->integer('reference')->nullable();
+            $table->string('delay')->nullable();
             $table->integer('sort');
             $table->timestamps();
         });

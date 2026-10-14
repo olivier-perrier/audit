@@ -4,12 +4,7 @@ Migration Fortify
 
 # Présentation
 
-L'outil open source d'analyse d'audit permet la création de fomulaire personnalisé pour l'évaluation des entreprises sur l'employabilité. L'application propose aussi une solution simple de recherche d'emploi.
-
-# Informations
-
-- Pour des raisons de sécurité le repository a été recrée sans historique et anonymisé avant de le rendre public.
-- Date d'origine du projet 2024.
+L'outil open source d'analyse d'audit permet la création de fomulaire personnalisé pour l'évaluation des entreprises sur la sécurité des systèmes.
 
 # Démo
 Application de démo : audit.olivierperrier.fr
@@ -27,6 +22,8 @@ composer install
 npm install
 
 php artisan key:generate
+
+php artisan storage:link
 
 php artisan migrate --seed
 
