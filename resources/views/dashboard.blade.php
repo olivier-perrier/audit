@@ -11,8 +11,7 @@
         <div class="mt-6 flex flex-wrap gap-6">
             @foreach ($scorings as $scoring)
                 <a href="{{ route('scorings.scoring-sections.index', $scoring) }}" wire:navigate>
-                    <x-card class="h-52 w-52 relative"
-                        style="background-image: url('images/bubble.svg'); object-fit: cover">
+                    <x-card class="h-52 w-52 relative">
                         <span class="flex justify-center mt-2 text-3xl font-extrabold text-center">
                             {{ $scoring->scoringQuiz->name }}
                         </span>

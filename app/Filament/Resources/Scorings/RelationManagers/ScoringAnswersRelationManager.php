@@ -1,12 +1,7 @@
 <?php
 
-namespace App\Filament\Resources\ScoringSections\RelationManagers;
+namespace App\Filament\Resources\Scorings\RelationManagers;
 
-use App\Enums\QuestionImpact;
-use App\Enums\QuestionPriority;
-use App\Enums\QuestionProbability;
-use App\Enums\QuestionSeverity;
-use App\Models\ScoringQuestion;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;

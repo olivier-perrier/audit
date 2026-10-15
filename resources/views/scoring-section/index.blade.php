@@ -26,7 +26,7 @@
             @foreach ($scoring->scoringQuiz->scoringSections as $section)
                 <a href="{{ route('scorings.scoring-sections.show', [$scoring, $section]) }}" wire:navigate>
 
-                    <x-card class="bg-white px-4 py-4 hover:bg-indigo-200 h-48">
+                    <x-card class="px-4 py-4 h-48">
                         <div class="flex">
                             <img src="{{ $section->icon ? Storage::disk('public')->url($section->icon) : asset($section->default_icon) }}"
                                 alt="icon" class="p-2 h-16">
@@ -42,11 +42,11 @@
                         <div class="flex justify-between">
                             <div>
                                 @if ($remaining_answer_count == 0)
-                                    <span class="bg-green-500 text-white rounded-full px-4">Terminé</span>
+                                    <span class="bg-green-500 rounded-full px-4">Terminé</span>
                                 @elseif($answer_count == 0)
-                                    <span class="bg-blue-500 text-white rounded-full px-4">A faire</span>
+                                    <span class="bg-blue-500 rounded-full px-4">A faire</span>
                                 @else
-                                    <span class="bg-orange-500 text-white rounded-full px-4">En cours...</span>
+                                    <span class="bg-orange-500 rounded-full px-4">En cours...</span>
                                 @endif
                             </div>
                             <span class="text-blue-500 hover:underline">Modifier</span>

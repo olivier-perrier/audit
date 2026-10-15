@@ -30,17 +30,17 @@
                     </div>
 
                     <div class="my-20 text-center">
-                        <h1 class="text-4xl font-bold">{{auth()->user()->company->name}}</h1>
-                        {{-- <h2 class="text-green-700">Certifié rand <b>{{ $scoring->rank }}</b></h2> --}}
+                        <h1 class="text-4xl font-bold">{{ auth()->user()->company->name }}</h1>
+                        <h2 class="text-green-700">Certifié <b>{{ $scoring->scorePourcentage }}%</b></h2>
                     </div>
                     <div class="text-center text-sm text-gray-500">
-                        <span>Société <b>{{auth()->user()->company->name}}</b> domicilié à l'adresse
-                            <b>{{auth()->user()->company->address->city}}</b>
-                            certifié rand <b>{{ $scoring->rank }}</b></span> <br>
+                        <span>Société <b>{{ auth()->user()->company->name }}</b> domicilié à l'adresse
+                            <b>{{ auth()->user()->company->address->street . ' ' . auth()->user()->company->address->city }}</b>
+                            certifié <b>{{ $scoring->scorePourcentage }}%</b></span> <br>
                         <hr class="my-2">
                         <span>Votre certification est validée à la date du {{ date('Y-m-d') }} sous la
                             responsabilité de
-                            l'ossociation et en collboration avec l'entreprise Opart tout droit réservé.</span>
+                            l'association et en collboration avec l'entreprise Opart tout droit réservé.</span>
                         <br>
                         <span>Merci de lire en prendre connaissance des conditions générales d'utilisations. En
                             utilisant
@@ -54,7 +54,7 @@
     </div>
 
     {{-- scoring --}}
-    <div class="mt-10"> 
+    <div class="mt-10">
 
         <x-h2><span class="text-gray-800">ANALYSE DU</span> AUDIT</x-h2>
         <span class="text-sm italic">Vous avez obtenu un pourcentage de total de {{ $scoring->score }} soit

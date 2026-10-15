@@ -1,3 +1,3 @@
-<flux:card {{ $attributes->merge(['class' => 'hover:bg-indigo-100']) }}>
+<flux:card {{ $attributes->merge(['class' => 'hover:shadow-md']) }}>
     {{ $slot }}
 </flux:card>

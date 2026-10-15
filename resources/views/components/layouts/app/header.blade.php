@@ -9,9 +9,7 @@
     <flux:header container class="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
         <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
-        <a href="{{ route('home') }}" class="ml-2 mr-5 flex items-center space-x-2 lg:ml-0" wire:navigate>
-            <x-app-logo class="size-8" href="#"></x-app-logo>
-        </a>
+        <x-app-logo href="{{ route('home') }}" wire:navigate />
 
         <flux:navbar class="-mb-px max-lg:hidden">
             <flux:navbar.item icon="layout-grid" href="{{ route('dashboard') }}"
@@ -34,27 +32,18 @@
 
         <!-- Desktop User Menu -->
         @auth
-            <flux:dropdown position="top" align="end">
-                <flux:profile class="cursor-pointer" :initials="auth()->user()->initials()" />
+            <flux:dropdown position="bottom" align="start">
+                <flux:sidebar.profile :name="auth()->user()->name" :initials="auth()->user()->initials()"
+                    icon:trailing="chevrons-up-down" data-test="sidebar-menu-button" />
 
                 <flux:menu>
-                    <flux:menu.radio.group>
-                        <div class="p-0 text-sm font-normal">
-                            <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                                <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
-                                    <span
-                                        class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
-                                        {{ auth()->user()->initials() }}
-                                    </span>
-                                </span>
-
-                                <div class="grid flex-1 text-left text-sm leading-tight">
-                                    <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
-                                    <span class="truncate text-xs">{{ auth()->user()->email }}</span>
-                                </div>
-                            </div>
+                    <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
+                        <flux:avatar :name="auth()->user()->name" :initials="auth()->user()->initials()" />
+                        <div class="grid flex-1 text-start text-sm leading-tight">
+                            <flux:heading class="truncate">{{ auth()->user()->name }}</flux:heading>
+                            <flux:text class="truncate">{{ auth()->user()->email }}</flux:text>
                         </div>
-                    </flux:menu.radio.group>
+                    </div>
 
                     <flux:menu.separator />
 

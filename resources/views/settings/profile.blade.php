@@ -12,13 +12,13 @@
                 <x-label for="name">{{ __('Name') }} </x-label>
                 <x-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required
                     autofocus autocomplete="name" />
-                <x-error class="mt-2" name="name" />
+                <x-error name="name" />
 
                 <div>
                     <x-label for="email">{{ __('Email') }} </x-label>
                     <x-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)"
                         autocomplete="username" />
-                    <x-error class="mt-2" name="email" />
+                    <x-error name="email" />
 
                     @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
                         <div>
@@ -40,8 +40,16 @@
                     @endif
                 </div>
 
-                <x-input name="company[name]" :value="$user->company->name" label="Nom de l'entreprise" disabled />
-                <x-input name="company[address][street]" :value="@$user->company->address->city" label="Adresse de l'entreprise" disabled />
+                <x-input name="company[name]" :value="$user->company->name" label="Nom de l'entreprise" />
+                <x-error name="company.name" />
+
+                <div class='flex gap-4 w-full'>
+                    <x-input name="company[address][street]" :value="@$user->company->address->street" label="Adresse de l'entreprise" />
+                    <x-error name="company.address.street" />
+
+                    <x-input name="company[address][city]" :value="@$user->company->address->city" label="Ville" />
+                    <x-error name="company.address.city" />
+                </div>
 
                 <div class="flex items-center gap-4">
                     <div class="flex items-center justify-end">

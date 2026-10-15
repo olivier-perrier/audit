@@ -5,7 +5,7 @@ namespace App\Filament\Resources\Scorings;
 use App\Filament\Resources\Scorings\Pages\CreateScoring;
 use App\Filament\Resources\Scorings\Pages\EditScoring;
 use App\Filament\Resources\Scorings\Pages\ListScorings;
-use App\Filament\Resources\ScoringSections\RelationManagers\ScoringAnswersRelationManager;
+use App\Filament\Resources\Scorings\RelationManagers\ScoringAnswersRelationManager;
 use App\Models\Scoring;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\EditAction;
@@ -36,7 +36,7 @@ class ScoringResource extends Resource
                     TextEntry::make('scoringQuiz.name')->label('Questionnaire'),
                     TextEntry::make('author.name')->label('Auteur'),
                     TextEntry::make('id')->label('Nombre de questions')
-                        ->formatStateUsing(fn ($record) => $record->scoringAnswers()->count() . ' / ' . $record->scoringQuiz->scoringQuestions()->count()),
+                        ->formatStateUsing(fn($record) => $record->scoringAnswers()->count() . ' / ' . $record->scoringQuiz->scoringQuestions()->count()),
                     TextEntry::make('score')->label('Score'),
                     TextEntry::make('score_pourcentage')->label('Score en pourcentage')->suffix('%'),
                 ])
@@ -48,7 +48,7 @@ class ScoringResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(fn (Builder $query) => $query->with(['scoringQuiz', 'scoringAnswers', 'author']))
+            ->modifyQueryUsing(fn(Builder $query) => $query->with(['scoringQuiz', 'scoringAnswers', 'author']))
             ->columns([
                 TextColumn::make('scoringQuiz.name')->label('Questionnaire'),
                 TextColumn::make('author.name')->label('Auteur'),

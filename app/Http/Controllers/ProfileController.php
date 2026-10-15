@@ -29,10 +29,38 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $data = $request->validated();
+
+        // dd($data);
+
+        $request->user()->fill($data);
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
+        }
+
+        $company = $request->user()->company;
+        if ($company) {
+            $company->update([
+                'name' => $data['company']['name'],
+            ]);
+        } else {
+            $company = $request->user()->company()->create([
+                'name' => $data['company']['name'],
+            ]);
+        }
+
+        $address = $company->address;
+        if ($address) {
+            $address->update([
+                'street' => $data['company']['address']['street'],
+                'city' => $data['company']['address']['city'],
+            ]);
+        } else {
+            $address = $company->address()->create([
+                'street' => $data['company']['address']['street'],
+                'city' => $data['company']['address']['city'],
+            ]);
         }
 
         $request->user()->save();

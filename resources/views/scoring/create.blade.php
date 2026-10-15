@@ -1,8 +1,9 @@
 <x-layouts.app>
 
-    <a href="{{ route('dashboard') }}" class="text-blue-500 hover:underline">
-        < Retour au tableau de bord </span>
-    </a>
+    <flux:breadcrumbs>
+        <flux:breadcrumbs.item :href="route('dashboard')">Tableau de bord</flux:breadcrumbs.item>
+        <flux:breadcrumbs.item>Nouvel audit</flux:breadcrumbs.item>
+    </flux:breadcrumbs>
 
     <div class="flex justify-center mt-10">
         <x-h1 class="mt-4">Lancez vous dans un nouvel audit</x-h1>
