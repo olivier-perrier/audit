@@ -6,7 +6,8 @@
 
     <div class="">
         <flux:heading>Retrouvez ici tout vos audits</flux:heading>
-        <flux:text class="mt-2">Selectionnez un de vos audit pour continuer à répondre aux questions ou visualiser le rapport d'analyse.</flux:text>
+        <flux:text class="mt-2">Selectionnez un de vos audit pour continuer à répondre aux questions ou visualiser le
+            rapport d'analyse.</flux:text>
 
         <div class="mt-6 flex flex-wrap gap-6">
             @foreach ($scorings as $scoring)

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
 
 <head>
     @include('partials.head')
@@ -19,6 +19,9 @@
         </flux:navbar>
 
         <flux:spacer />
+
+        <flux:button x-data x-on:click="$flux.dark = ! $flux.dark" icon="moon" variant="subtle"
+            aria-label="Toggle dark mode" class="mr-2" />
 
         <!-- Desktop Guest Menu -->
         @guest

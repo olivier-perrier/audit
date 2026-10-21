@@ -1,27 +1,15 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PasswordController;
-use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
-    Route::get('settings/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('settings/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Volt::route('settings/profile', 'settings.profile')->name('profile.edit');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::delete('settings/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::get('settings/security', [PasswordController::class, 'edit'])
-        // ->middleware(RequirePassword::class)
-        ->name('security.edit');
-
-    Route::put('settings/password', [PasswordController::class, 'update'])
-        ->middleware('throttle:6,1')
-        ->name('user-password.update');
-
-    Route::view('settings/appearance', 'settings.appearance')->name('appearance.edit');
+    Volt::route('settings/security', 'settings.security')->name('security.edit');
+    Volt::route('settings/appearance', 'settings.appearance')->name('appearance.edit');
 });
