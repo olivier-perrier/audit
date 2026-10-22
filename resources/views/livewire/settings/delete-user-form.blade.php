@@ -1,27 +1,3 @@
-<?php
-
-use App\Livewire\Actions\Logout;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Volt\Component;
-
-new class extends Component {
-    public string $password = '';
-
-    /**
-     * Delete the currently authenticated user.
-     */
-    public function deleteUser(Logout $logout): void
-    {
-        $this->validate([
-            'password' => ['required', 'string', 'current_password'],
-        ]);
-
-        tap(Auth::user(), $logout(...))->delete();
-
-        $this->redirect('/', navigate: true);
-    }
-}; ?>
-
 <section class="mt-10 space-y-6">
     <div class="relative mb-5">
         <flux:heading>{{ __('Delete Account') }}</flux:heading>
@@ -29,7 +5,8 @@ new class extends Component {
     </div>
 
     <flux:modal.trigger name="confirm-user-deletion">
-        <flux:button variant="danger" x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
+        <flux:button variant="danger" x-data=""
+            x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
             {{ __('Delete Account') }}
         </flux:button>
     </flux:modal.trigger>
@@ -44,7 +21,8 @@ new class extends Component {
                 </flux:subheading>
             </div>
 
-            <flux:input wire:model="password" id="password" label="{{ __('Password') }}" type="password" name="password" />
+            <flux:input wire:model="password" id="password" label="{{ __('Password') }}" type="password"
+                name="password" />
 
             <div class="flex justify-end space-x-2">
                 <flux:modal.close>
